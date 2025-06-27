@@ -41,7 +41,7 @@ public class BonusGame : MonoBehaviour
         {
             int index = i;
             if (btn[index]) btn[index].onClick.RemoveAllListeners();
-            if (btn[index]) btn[index].onClick.AddListener(delegate { OnSelectGrave(btn[index], imagelist[index], textList[index]); });
+            if (btn[index]) btn[index].onClick.AddListener(delegate { OnSelectGrave(btn[index], imagelist[index], textList[index],index); SocketManager.OnBonusCollect(index); });
         }
         // if (btn[0]) btn[0].onClick.RemoveAllListeners();
         // if (btn[0]) btn[0].onClick.AddListener(delegate { OnSelectGrave(btn[0], imagelist[0], textList[0]); });
@@ -112,14 +112,14 @@ public class BonusGame : MonoBehaviour
         // }
     }
 
-    void OnSelectGrave(Button btn, ImageAnimation img, TMP_Text text)
+    void OnSelectGrave(Button btn, ImageAnimation img, TMP_Text text, int graveNo)
     {
         if (RayCast_Panel) RayCast_Panel.SetActive(true);
         btn.interactable = false;
         // tempButtonList.Remove(btn);
 
         int index = Random.Range(0, randomIndex.Count);
-        if (result[counter] == 0)
+        if (result[graveNo] == 0)
         {
             // foreach (var item in tempButtonList)
             // {
@@ -145,7 +145,7 @@ public class BonusGame : MonoBehaviour
         
 //       Debug.Log("DEV_Test" + SocketManager.initialData.Bets[slotBehaviour.BetCounter]);
 
-        double value = result[counter] * SocketManager.initialData.Bets[slotBehaviour.BetCounter];
+        double value = result[graveNo] * SocketManager.InitialData.bets[slotBehaviour.BetCounter];
         text.text = "+" + value.ToString("0.000");
 
     //    Debug.Log("DEV_Test" + value);
@@ -163,7 +163,7 @@ public class BonusGame : MonoBehaviour
         };
 
         img.StartAnimation();
-        counter++;
+       // counter++;
         if (RayCast_Panel) RayCast_Panel.SetActive(false);
     }
 

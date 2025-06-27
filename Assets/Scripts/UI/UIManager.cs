@@ -368,7 +368,7 @@ public class UIManager : MonoBehaviour
         // Application.ExternalCall("window.parent.postMessage", "onExit", "*");
     }
 
-    internal void InitialiseUIData(string SupportUrl, string AbtImgUrl, string TermsUrl, string PrivacyUrl, Paylines symbolsText)
+    internal void InitialiseUIData( Paylines symbolsText)
     {
         PopulateSymbolsPayout(symbolsText);
     }
@@ -378,52 +378,46 @@ public class UIManager : MonoBehaviour
         for (int i = 0; i < SymbolsText.Length; i++)
         {
             string text = null;
-            if (paylines.symbols[i].Multiplier[0][0] != 0)
+            if (paylines.symbols[i].multiplier[0] != 0)
             {
-                text += "<color=yellow>5x - </color>" + paylines.symbols[i].Multiplier[0][0]+"x";
+                text += "5x - " + paylines.symbols[i].multiplier[0] + "x";
             }
-            if (paylines.symbols[i].Multiplier[1][0] != 0)
+            if (paylines.symbols[i].multiplier[1] != 0)
             {
-                text += "\n<color=yellow>4x - </color>" + paylines.symbols[i].Multiplier[1][0]+"x";
+                text += "\n4x - " + paylines.symbols[i].multiplier[1] + "x";
             }
-            if (paylines.symbols[i].Multiplier[2][0] != 0)
+            if (paylines.symbols[i].multiplier[2] != 0)
             {
-                text += "\n<color=yellow>3x - </color>" + paylines.symbols[i].Multiplier[2][0]+"x";
+                text += "\n3x - " + paylines.symbols[i].multiplier[2] + "x";
             }
             if (SymbolsText[i]) SymbolsText[i].text = text;
         }
 
         for (int i = 0; i < paylines.symbols.Count; i++)
         {
-            if (paylines.symbols[i].Name.ToUpper() == "FREESPIN")
+            if (paylines.symbols[i].name.ToUpper() == "FREESPIN")
             {
                 if (FreeSpin_Text) FreeSpin_Text.text = paylines.symbols[i].description.ToString();
             }
-            if (paylines.symbols[i].Name.ToUpper() == "SCATTER")
+            if (paylines.symbols[i].name.ToUpper() == "SCATTER")
             {
                 if (Scatter_Text) Scatter_Text.text = paylines.symbols[i].description.ToString();
             }
-            if (paylines.symbols[i].Name.ToUpper() == "BONUS")
+            if (paylines.symbols[i].name.ToUpper() == "JACKPOT")
+            {
+               // if (Jackpot_Text) Jackpot_Text.text = paylines.symbols[i].description.ToString();
+            }
+            if (paylines.symbols[i].name.ToUpper() == "BONUS")
             {
                 if (Bonus_Text) Bonus_Text.text = paylines.symbols[i].description.ToString();
             }
-            if (paylines.symbols[i].Name.ToUpper() == "WILD")
+            if (paylines.symbols[i].name.ToUpper() == "WILD")
             {
                 if (Wild_Text) Wild_Text.text = paylines.symbols[i].description.ToString();
             }
         }
 
-        // for (int i = 0; i < paylines.symbols.Count; i++)
-        // {
-        //     if (paylines.symbols[i].Name.ToUpper() == "FREESPIN")
-        //     {
-        //         if (FreeSpin_Text) FreeSpin_Text.text = "Free Spin: Activates " + paylines.symbols[i].Multiplier[0][1] + ", " + paylines.symbols[i].Multiplier[1][1] + ", or " + paylines.symbols[i].Multiplier[2][1] + " free spins when 3, 4, or 5 symbols appear on pay lines.";
-        //     }
-        //     if (paylines.symbols[i].Name.ToUpper() == "SCATTER")
-        //     {
-        //         if (Scatter_Text) Scatter_Text.text = "Scatter: Offers higher pay outs and awards " + paylines.symbols[i].Multiplier[0][1] + " free spins if 5 symbols align on the pay line with a multiplier.\nPayout: 5x - " + paylines.symbols[i].Multiplier[0][0] + ", 4x - " + paylines.symbols[i].Multiplier[1][0] + ", 3x - " + paylines.symbols[i].Multiplier[2][0];
-        //     }
-        // }
+
 
     }
 
