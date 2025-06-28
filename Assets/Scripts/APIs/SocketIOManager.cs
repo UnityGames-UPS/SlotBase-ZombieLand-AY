@@ -82,48 +82,46 @@ public class SocketIOManager : MonoBehaviour
         options.Reconnection = true;
         options.ConnectWith = Best.SocketIO.Transports.TransportTypes.WebSocket;
 
-        // Application.ExternalCall("window.parent.postMessage", "authToken", "*");
-
-        //#if UNITY_WEBGL && !UNITY_EDITOR
-        //        JSManager.SendCustomMessage("authToken");
-        //        StartCoroutine(WaitForAuthToken(options));
-        //#else
-        //        Func<SocketManager, Socket, object> authFunction = (manager, socket) =>
-        //        {
-        //            return new
-        //            {
-        //                token = testToken,                
-        //            };
-        //        };
-        //        options.Auth = authFunction;
-        //        // Proceed with connecting to the server
-        //        SetupSocketManager(options);
-        //#endif
-#if UNITY_WEBGL && !UNITY_EDITOR
-    string url = Application.absoluteURL;
-    Debug.Log("Unity URL : " + url);
-    ExtractUrlAndToken(url);
-
-    Func<SocketManager, Socket, object> webAuthFunction = (manager, socket) =>
-    {
-      return new
-      {
-        token = testToken,
-      };
-    };
-    options.Auth = webAuthFunction;
-#else
-        Func<SocketManager, Socket, object> authFunction = (manager, socket) =>
-        {
-            return new
+        #if UNITY_WEBGL && !UNITY_EDITOR
+            JSManager.SendCustomMessage("authToken");
+            StartCoroutine(WaitForAuthToken(options));
+        #else
+            Func<SocketManager, Socket, object> authFunction = (manager, socket) =>
             {
-                token = testToken,
+                return new
+                {
+                    token = testToken,                
+                };
             };
-        };
-        options.Auth = authFunction;
-#endif
-        // Proceed with connecting to the server
-        SetupSocketManager(options);
+            options.Auth = authFunction;
+            // Proceed with connecting to the server
+            SetupSocketManager(options);
+        #endif
+// #if UNITY_WEBGL && !UNITY_EDITOR
+//     string url = Application.absoluteURL;
+//     Debug.Log("Unity URL : " + url);
+//     ExtractUrlAndToken(url);
+
+//     Func<SocketManager, Socket, object> webAuthFunction = (manager, socket) =>
+//     {
+//       return new
+//       {
+//         token = testToken,
+//       };
+//     };
+//     options.Auth = webAuthFunction;
+// #else
+//         Func<SocketManager, Socket, object> authFunction = (manager, socket) =>
+//         {
+//             return new
+//             {
+//                 token = testToken,
+//             };
+//         };
+//         options.Auth = authFunction;
+// #endif
+//         // Proceed with connecting to the server
+//         SetupSocketManager(options);
     }
 
     private IEnumerator WaitForAuthToken(SocketOptions options)
@@ -332,6 +330,9 @@ public class SocketIOManager : MonoBehaviour
     internal void CloseSocket()
     {
         SendDataWithNamespace("game:exit");
+#if UNITY_WEBGL && !UNITY_EDITOR
+        JSManager.SendCustomMessage("OnExit");
+#endif
         // DOVirtual.DelayedCall(0.1f, () =>
         // {
         //     if (this.manager != null)
@@ -344,7 +345,7 @@ public class SocketIOManager : MonoBehaviour
     internal void closeSocketReactnativeCall()
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
-    JSManager.SendCustomMessage("OnExit");
+        JSManager.SendCustomMessage("OnExit");
 #endif
     }
     private void CloseSocketMesssage(string eventName)
