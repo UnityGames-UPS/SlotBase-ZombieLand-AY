@@ -7629,7 +7629,7 @@ MonoBehaviour:
   bonusdata: []
   JSManager: {fileID: 1989661610}
   TestSocketURI: https://sl3l5zz3-5000.inc1.devtunnels.ms/
-  testToken: 8574d962466549309ccf7de5b2bf7788
+  testToken: 39d48ff663bd46258b8bddff5eb6b868
 --- !u!1 &509127710
 GameObject:
   m_ObjectHideFlags: 0

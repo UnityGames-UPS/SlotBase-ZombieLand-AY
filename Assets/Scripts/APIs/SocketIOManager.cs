@@ -177,7 +177,7 @@ public class SocketIOManager : MonoBehaviour
         gameSocket.On<string>(SocketIOEventTypes.Disconnect, OnDisconnected);
         gameSocket.On<string>(SocketIOEventTypes.Error, OnError);
         gameSocket.On<string>("game:init", OnListenEvent);
-        gameSocket.On<string>("spin:result", OnResult);
+        gameSocket.On<string>("result", OnResult);
         gameSocket.On<string>("gamble:result", OnGameResult);
         gameSocket.On<string>("bonus:result", OnBonusResult);
         gameSocket.On<bool>("socketState", OnSocketState);
@@ -406,7 +406,7 @@ public class SocketIOManager : MonoBehaviour
                 }
             case "gambleDraw":
                 {
-                    Debug.Log(jsonObject);
+       
                     GambleData = myData;
                     PlayerData = myData.player;
                     UpdateUiOnResult(myData);
@@ -498,64 +498,70 @@ public class SocketIOManager : MonoBehaviour
     {
         isResultdone = false;
         MessageData message = new MessageData();
-        message.currentBet = slotManager.BetCounter;
+        message.payload = new SentDeta();
+        message.type = "SPIN";
+        Debug.Log(slotManager.BetCounter);
+        message.payload.betIndex = slotManager.BetCounter;
         // Serialize message data to JSON
         string json = JsonUtility.ToJson(message);
-        SendDataWithNamespace("spin:request", json);
+        SendDataWithNamespace("request", json);
     }
 
     internal void OnGamble()
-    {       
+    {
         isResultdone = false;
-        GambleData data = new()
-        {
-            type = "gamble",
-            Event = "init",
-            lastWinning = ResultData.payload.winAmount,
-        };
-        string json = JsonUtility.ToJson(data);
-        SendDataWithNamespace("gamble:request", json);
+        MessageData message = new MessageData();
+        message.payload = new SentDeta();
+        message.type = "GAMBLE";
+        Debug.Log(slotManager.BetCounter);
+        message.payload.lastWinning = slotManager.BetCounter;
+        message.payload.Event = "init";
+        // Serialize message data to JSON
+        string json = JsonUtility.ToJson(message);
+        SendDataWithNamespace("request", json);
 
 
     }
 
     internal void GambleDraw()
-    {      
+    {
         isResultdone = false;
-        GambleData data = new()
-        {
-            type = "gamble",
-            Event = "draw",
-            lastWinning = ResultData.payload.winAmount,
-        };
-        string json = JsonUtility.ToJson(data);
-        SendDataWithNamespace("gamble:request", json);
+        MessageData message = new MessageData();
+        message.payload = new SentDeta();
+        message.type = "GAMBLE";
+        Debug.Log(slotManager.BetCounter);
+        message.payload.lastWinning = slotManager.BetCounter;
+        message.payload.Event = "draw";
+        // Serialize message data to JSON
+        string json = JsonUtility.ToJson(message);
+        SendDataWithNamespace("request", json);
     }
 
     internal void OnCollect()
     {
-        Debug.Log("################gambleCollect");
         isResultdone = false;
-        GambleData data = new()
-        {
-            type = "gamble",
-            Event = "collect",
-            lastWinning = ResultData.payload.winAmount,
-        };
-        string json = JsonUtility.ToJson(data);
-        SendDataWithNamespace("gamble:request", json);
+        MessageData message = new MessageData();
+        message.payload = new SentDeta();
+        message.type = "GAMBLE";
+        
+        message.payload.lastWinning = slotManager.BetCounter;
+        message.payload.Event = "collect";
+        // Serialize message data to JSON
+        string json = JsonUtility.ToJson(message);
+        SendDataWithNamespace("request", json);
     }
     internal void OnBonusCollect(int index)
-    {       
+    {
         isResultdone = false;
-        BonusData data = new()
-        {
-            type = "bonus",
-            Event = "tap",
-            index = index,
-        };
-        string json = JsonUtility.ToJson(data);
-        SendDataWithNamespace("bonus:request", json);
+        MessageData message = new MessageData();
+        message.payload = new SentDeta();
+        message.type = "BONUS";
+       
+        message.payload.index = index;
+        message.payload.Event = "tap";
+        // Serialize message data to JSON
+        string json = JsonUtility.ToJson(message);
+        SendDataWithNamespace("request", json);
     }
 
     private List<string> RemoveQuotes(List<string> stringList)
@@ -624,6 +630,16 @@ public class SocketIOManager : MonoBehaviour
     }
 }
 [Serializable]
+public class SentDeta
+{
+    public int betIndex;
+    public string Event;
+    public double lastWinning;
+    public int index;
+}
+
+
+[Serializable]
 public class GambleResult
 {
     public string id;
@@ -660,8 +676,10 @@ public class GambleData
 [Serializable]
 public class MessageData
 {
-    public int currentBet;
-    
+    public string type;
+
+    public SentDeta payload;
+
 }
 
 [Serializable]
