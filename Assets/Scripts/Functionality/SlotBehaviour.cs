@@ -601,7 +601,7 @@ public class SlotBehaviour : MonoBehaviour
                 AutoSpinRoutine = null;
             }
         }
-
+        if (TotalWin_text) TotalWin_text.text = "0.00";
         if (SlotAnimRoutine != null)
         {
             StopCoroutine(SlotAnimRoutine);
@@ -839,7 +839,7 @@ public class SlotBehaviour : MonoBehaviour
     {
         if (IsStart)
         {
-            WinTween = TotalWin_text.transform.DOScale(new Vector2(1.5f, 1.5f), 1f).SetLoops(-1, LoopType.Yoyo).SetDelay(0);
+            WinTween = TotalWin_text.transform.DOScale(new Vector2(1.2f, 1.2f), 1f).SetLoops(-1, LoopType.Yoyo).SetDelay(0);
         }
         else
         {
@@ -1026,14 +1026,9 @@ public class SlotBehaviour : MonoBehaviour
     }
     private void CheckForFeaturesAnimation()
     {
-        bool playJackpot = false;
         bool playScatter = false;
         bool playBonus = false;
         bool playFreespin = false;
-        if (SocketManager.ResultData.jackpot.amount > 0)
-        {
-            playJackpot = true;
-        }
         if (SocketManager.ResultData.scatter.amount > 0)
         {
             playScatter = true;
@@ -1046,9 +1041,9 @@ public class SlotBehaviour : MonoBehaviour
         {
             playFreespin = true;
         }
-        PlayFeatureAnimation(playJackpot, playScatter, playBonus, playFreespin);
+        PlayFeatureAnimation(playScatter, playBonus, playFreespin);
     }
-    private void PlayFeatureAnimation(bool jackpot = false, bool scatter = false, bool bonus = false, bool freeSpin = false)
+    private void PlayFeatureAnimation(bool scatter = false, bool bonus = false, bool freeSpin = false)
     {
         for (int i = 0; i < SocketManager.ResultData.matrix.Count; i++)
         {
@@ -1057,19 +1052,15 @@ public class SlotBehaviour : MonoBehaviour
 
                 if (int.TryParse(SocketManager.ResultData.matrix[i][j], out int parsedNumber))
                 {
-                    if (jackpot && parsedNumber == 12)
+                    if (scatter && parsedNumber == 12)
                     {
                         StartGameAnimation(Tempimages[j].slotImages[i].gameObject);
                     }
-                    if (scatter && parsedNumber == 11)
+                    if (bonus && parsedNumber == 9)
                     {
                         StartGameAnimation(Tempimages[j].slotImages[i].gameObject);
                     }
-                    if (bonus && parsedNumber == 18)
-                    {
-                        StartGameAnimation(Tempimages[j].slotImages[i].gameObject);
-                    }
-                    if (freeSpin && parsedNumber == 13)
+                    if (freeSpin && parsedNumber == 10)
                     {
                         StartGameAnimation(Tempimages[j].slotImages[i].gameObject);
                     }

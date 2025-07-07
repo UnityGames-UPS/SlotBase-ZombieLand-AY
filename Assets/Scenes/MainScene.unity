@@ -6067,7 +6067,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -7628,8 +7628,8 @@ MonoBehaviour:
   uiManager: {fileID: 377874625}
   bonusdata: []
   JSManager: {fileID: 1989661610}
-  TestSocketURI: https://sl3l5zz3-5000.inc1.devtunnels.ms/
-  testToken: 39d48ff663bd46258b8bddff5eb6b868
+  TestSocketURI: https://9qr6bgs3-5000.inc1.devtunnels.ms/
+  testToken: 605d223ce8d947769a7512ab05865fd3
 --- !u!1 &509127710
 GameObject:
   m_ObjectHideFlags: 0
@@ -8353,7 +8353,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
