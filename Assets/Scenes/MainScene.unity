@@ -7626,10 +7626,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotManager: {fileID: 2046803210}
   uiManager: {fileID: 377874625}
-  bonusdata: []
+  bonusController: {fileID: 1450274932}
   JSManager: {fileID: 1989661610}
   TestSocketURI: https://9qr6bgs3-5000.inc1.devtunnels.ms/
-  testToken: 605d223ce8d947769a7512ab05865fd3
+  testToken: ee679cd0aaf849818280fadccb28fb97
 --- !u!1 &509127710
 GameObject:
   m_ObjectHideFlags: 0
@@ -20922,7 +20922,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 032f787a75e6b463587841017f2d1d90, type: 3}
   - {fileID: 21300000, guid: 2cf606fb0bcc24be29e4c5583a7fc73d, type: 3}
   RayCast_Panel: {fileID: 2041150698}
-  result: []
   bonusGame: {fileID: 1483849627}
   slotBehaviour: {fileID: 2046803210}
   audioManager: {fileID: 1523547263}

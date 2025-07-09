@@ -779,7 +779,7 @@ public class SlotBehaviour : MonoBehaviour
         if (SocketManager.ResultData.bonus.istriggered)
         {
 
-            CheckBonusGame();
+            StartBonus();
         }
         else
         {
@@ -893,14 +893,13 @@ public class SlotBehaviour : MonoBehaviour
 
     internal void updateBalance()
     {
-       
         if (Balance_text) Balance_text.text = SocketManager.PlayerData.balance.ToString("f3");
         if (TotalWin_text) TotalWin_text.text = SocketManager.ResultData.payload.winAmount.ToString("f3");
     }
 
-    internal void CheckBonusGame()
+    internal void StartBonus()
     {
-        _bonusManager.startgame(SocketManager.ResultData.bonus.result);              //hh
+        _bonusManager.StartBonusGame();             
         if (SocketManager.ResultData.freeSpin.count > 0)
         {
             if (IsAutoSpin)
@@ -937,7 +936,7 @@ public class SlotBehaviour : MonoBehaviour
     internal void SetInitialUI()
     {
         BetCounter = 0;
-        Debug.Log("run this");
+        //Debug.Log("run this");
         if (LineBet_text) LineBet_text.text = SocketManager.InitialData.bets[BetCounter].ToString();
         if (TotalBet_text) TotalBet_text.text = (SocketManager.InitialData.bets[BetCounter] * Lines).ToString();
         if (TotalWin_text) TotalWin_text.text = "0.00";
