@@ -7628,8 +7628,8 @@ MonoBehaviour:
   uiManager: {fileID: 377874625}
   bonusController: {fileID: 1450274932}
   JSManager: {fileID: 1989661610}
-  TestSocketURI: https://9qr6bgs3-5000.inc1.devtunnels.ms/
-  testToken: ee679cd0aaf849818280fadccb28fb97
+  TestSocketURI: https://mx2md3l5-5000.inc1.devtunnels.ms/
+  testToken: 20cc6116d379408582d611a65999d176
 --- !u!1 &509127710
 GameObject:
   m_ObjectHideFlags: 0
@@ -30547,41 +30547,38 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d6858d6d9ad1c4b63ae4a6229ddb0366, type: 3}
   - {fileID: 21300000, guid: c6e1ea7fe2cf9441a957013f846bcb4a, type: 3}
   Symbol10:
-  - {fileID: 21300000, guid: 262ee97777eb544e2a733a2687ff79e7, type: 3}
-  - {fileID: 21300000, guid: 70b993fb6e54f4a5d895172e6e9725c1, type: 3}
-  - {fileID: 21300000, guid: ba1a39f118cd7472b8fa2e84c724f061, type: 3}
-  - {fileID: 21300000, guid: d182b4eba0f33434ab6934df3285b9b2, type: 3}
-  - {fileID: 21300000, guid: c41cc4281e0fb446996a3b57d161a556, type: 3}
-  - {fileID: 21300000, guid: b61c6d21fee274816943566e62b45187, type: 3}
-  - {fileID: 21300000, guid: c534aabe894184fc6882c352a3803dcb, type: 3}
-  - {fileID: 21300000, guid: ae6f3b450148a4f55b08f215ef26e861, type: 3}
-  - {fileID: 21300000, guid: 0e813d6b77e924de59963734bc7ebc7c, type: 3}
-  - {fileID: 21300000, guid: 7a745b01b3163456c8cb081e3ac359e4, type: 3}
-  - {fileID: 21300000, guid: e2d758ae1882942f18b2f7f8d8ce6d54, type: 3}
-  - {fileID: 21300000, guid: a6c5dc56911af478ba86c29034949400, type: 3}
-  - {fileID: 21300000, guid: ccc7354c53cca497e8950b2fd66ca35d, type: 3}
-  - {fileID: 21300000, guid: 709ed5ba96b9242a0a13232555558eb9, type: 3}
-  - {fileID: 21300000, guid: c66355cb18669489a85d053968971af0, type: 3}
-  - {fileID: 21300000, guid: 20243d6263f6f4ec9a36ac223e7ba336, type: 3}
-  - {fileID: 21300000, guid: 602895ed4dc7b4e19a72754bfee3902b, type: 3}
-  - {fileID: 21300000, guid: 5d24d79c7e0b5427787259b1d533a5a7, type: 3}
-  - {fileID: 21300000, guid: 6b784322d740445499474b77dd8bd690, type: 3}
-  - {fileID: 21300000, guid: 20d037d6f1e414f94bf706150f18e2e1, type: 3}
-  - {fileID: 21300000, guid: 031ce544eb04f458cad186988e926b15, type: 3}
-  - {fileID: 21300000, guid: 18d3d11f53af947f4a618db5b85d6abd, type: 3}
-  - {fileID: 21300000, guid: 1fd51d89c89d14cda84095d703a33562, type: 3}
-  - {fileID: 21300000, guid: 6107b09f44bd84005b121038b660e64d, type: 3}
-  - {fileID: 21300000, guid: 2610ef68ec4894a69a3726876a09b8b0, type: 3}
-  - {fileID: 21300000, guid: f78ac7802c1464dc9aa5abbba5da9c03, type: 3}
-  - {fileID: 21300000, guid: a642519d1b7c04622b1950c897384fbe, type: 3}
-  - {fileID: 21300000, guid: 7abcb060632604e52902f19f999b9ca5, type: 3}
-  - {fileID: 21300000, guid: cb6f353167a864b9291b1ad643386fdf, type: 3}
-  - {fileID: 21300000, guid: 5f437e4d001bb4019872b90756b71c40, type: 3}
-  - {fileID: 21300000, guid: 8297f5de2665644e99e815a8d05384d7, type: 3}
-  - {fileID: 21300000, guid: 06320c14c5cc84b4fb5adf21ee2c57dd, type: 3}
-  - {fileID: 21300000, guid: 86a14a84ab1dd46249d7e81ae60240d6, type: 3}
-  - {fileID: 21300000, guid: 9b0ee23e99e2e4d2884465fc21c19ee4, type: 3}
-  - {fileID: 21300000, guid: ce24a7948145241bb92019bff85bf021, type: 3}
+  - {fileID: 21300000, guid: 1f1ec2e05ef87443b91b3f09dd76431d, type: 3}
+  - {fileID: 21300000, guid: 7fdaf2848f3ec475cb37ac2d127f659d, type: 3}
+  - {fileID: 21300000, guid: d457e55cfff624ed496403a607c6a506, type: 3}
+  - {fileID: 21300000, guid: 59f8e7a6124844d7ea6358b9adab9607, type: 3}
+  - {fileID: 21300000, guid: 810141b2727174e24bf6c2965605dafe, type: 3}
+  - {fileID: 21300000, guid: 08c010b1401104882bde1c054806f706, type: 3}
+  - {fileID: 21300000, guid: d04a13190a56044069cdb65960fbea6c, type: 3}
+  - {fileID: 21300000, guid: f8c665aef8cef4aac9cf65a675a29a2d, type: 3}
+  - {fileID: 21300000, guid: dafdb717efaa5462683cc7d577d1e579, type: 3}
+  - {fileID: 21300000, guid: 237e5dd200ab1426b917b81e25e8ff55, type: 3}
+  - {fileID: 21300000, guid: eea7d2b9ba6ca4548aa8503a3f0563e7, type: 3}
+  - {fileID: 21300000, guid: 157058d022ac6494d8cabc4732861980, type: 3}
+  - {fileID: 21300000, guid: c44ea2ea3fc5b463b8d021112bff4999, type: 3}
+  - {fileID: 21300000, guid: 95f78ad2e8ee2413db21f20f08bc42a8, type: 3}
+  - {fileID: 21300000, guid: 71d08a0a91dc442dca7464ee416e5e5a, type: 3}
+  - {fileID: 21300000, guid: e4747671032be4aeaa1d2850af2b22b3, type: 3}
+  - {fileID: 21300000, guid: d5e01d87982804db5b9e130006537d29, type: 3}
+  - {fileID: 21300000, guid: 108897b05e8534b9b8c101de5a4d1775, type: 3}
+  - {fileID: 21300000, guid: 0406e7623b4c24df78a2a0e98e6654d1, type: 3}
+  - {fileID: 21300000, guid: 2e8b0921abfba473dbca61c941a2a767, type: 3}
+  - {fileID: 21300000, guid: 91b8ed5aee040450ca2c439790162944, type: 3}
+  - {fileID: 21300000, guid: 8bd8db8bf810241419b5186d8b5c0abe, type: 3}
+  - {fileID: 21300000, guid: 0f18a7567af3c499aab7a818dbad4941, type: 3}
+  - {fileID: 21300000, guid: 4ca324415af8244ed9eebd854dfb5dc3, type: 3}
+  - {fileID: 21300000, guid: 0e95b7004e238434fbcbe52a42fb78e6, type: 3}
+  - {fileID: 21300000, guid: c4f25e86f9fd346b8980b149836d64ff, type: 3}
+  - {fileID: 21300000, guid: 9d904268c5e8d4e6799c9dc087aca44f, type: 3}
+  - {fileID: 21300000, guid: 399b80f25f825435a905d186c1ff3b70, type: 3}
+  - {fileID: 21300000, guid: 801c049c581d5473f87b663b9924b562, type: 3}
+  - {fileID: 21300000, guid: 74492a255a5024719aa9297590eccf37, type: 3}
+  - {fileID: 21300000, guid: 94814297873fb42b59b50552aaaa69b6, type: 3}
+  - {fileID: 21300000, guid: 46a02ce39ab6d4dd5857072a6f587786, type: 3}
   Symbol11:
   - {fileID: 21300000, guid: 1be711b78aed647a8850c9da389c9783, type: 3}
   - {fileID: 21300000, guid: 5348d3f2507ed40228c0f76221df7fd3, type: 3}
@@ -33599,6 +33596,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardImage: {fileID: 0}
   Card_Button: {fileID: 3144518050554891123}
+  SocketManager: {fileID: 500036492}
   gambleController: {fileID: 170898737}
 --- !u!114 &835155035133173998
 MonoBehaviour:
@@ -45008,6 +45006,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardImage: {fileID: 0}
   Card_Button: {fileID: 603240999277704068}
+  SocketManager: {fileID: 0}
   gambleController: {fileID: 170898737}
 --- !u!1 &6394081078465297622
 GameObject:
@@ -49572,6 +49571,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardImage: {fileID: 0}
   Card_Button: {fileID: 5274625309021768648}
+  SocketManager: {fileID: 500036492}
   gambleController: {fileID: 170898737}
 --- !u!114 &8706192975892712154
 MonoBehaviour:
@@ -50621,6 +50621,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardImage: {fileID: 0}
   Card_Button: {fileID: 6397801596133201153}
+  SocketManager: {fileID: 500036492}
   gambleController: {fileID: 170898737}
 --- !u!224 &9153690465769274720
 RectTransform:

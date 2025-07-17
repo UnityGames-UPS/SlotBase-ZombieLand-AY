@@ -52,7 +52,7 @@ public class GambleController : MonoBehaviour
     private Tweener Gamble_Tween_Scale = null; // Tweener for scaling the double button
     private bool isOut = false;
     #region Initialization
-
+  
     private void Start()
     {
         // Setup event listeners for buttons
@@ -190,7 +190,7 @@ public class GambleController : MonoBehaviour
         }
     }
     // Compute the card sprites based on the received message
-    private void ComputeCards()
+    internal void ComputeCards()
     {
         //dealerCard = new cardStruct();
         //playerCard = new cardStruct();
@@ -263,11 +263,11 @@ public class GambleController : MonoBehaviour
         {
             allcards[i].once = false;
         }
-        if (isRepeate) socketManager.GambleDraw();
-        else socketManager.OnGamble(); // Send gamble request                                        //hh
+        if (!isRepeate) socketManager.OnGamble();
+       // else socketManager.OnGamble(); // Send gamble request                                        //hh
 
         yield return new WaitUntil(() => socketManager.isResultdone); // Wait for result
-        ComputeCards(); // Compute card sprites
+        
         gambleStart = true; // Mark gamble as started
     }
 

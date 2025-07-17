@@ -21,6 +21,7 @@ public class SocketIOManager : MonoBehaviour
     internal Root GambleData = null;
     internal Root bonusData = new();
     internal List<List<int>> LineData = null;
+    internal List<int> BonusData = null;
 
    // internal GambleResult gambleData = null;
     // internal Message myMessage = null;
@@ -363,7 +364,7 @@ public class SocketIOManager : MonoBehaviour
                     InitialData = myData.gameData;
                     UIData = myData.uiData;
                     PlayerData = myData.player;
-                    //bonusdata = GetBonusData(myData.gameData.spinBonus);
+                    
 
                     if (!SetInit)
                     {
@@ -394,10 +395,10 @@ public class SocketIOManager : MonoBehaviour
             case "gambleInit":
                 {
                     //Debug.Log(jsonObject);
-                    GambleData = myData;
-                    PlayerData = myData.player;
+                    //GambleData = myData;
+                    //PlayerData = myData.player;
                     isResultdone = true;
-                    UpdateUiOnResult(myData);
+                    //UpdateUiOnResult(myData);
                     break;
                 }
             case "gambleDraw":
