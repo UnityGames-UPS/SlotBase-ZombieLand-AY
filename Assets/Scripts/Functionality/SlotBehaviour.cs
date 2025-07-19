@@ -169,7 +169,7 @@ public class SlotBehaviour : MonoBehaviour
     private int freeSpinsLeft;
     private void Start()
     {
-
+        Debug.Log("****** V_1.2 **********");
         if (SlotStart_Button) SlotStart_Button.onClick.RemoveAllListeners();
         if (SlotStart_Button) SlotStart_Button.onClick.AddListener(delegate { StartSlots(); });
 
@@ -882,6 +882,10 @@ public class SlotBehaviour : MonoBehaviour
             uiManager.PopulateWin(2, SocketManager.ResultData.payload.winAmount);
         }
         else if (SocketManager.ResultData.payload.winAmount >= currentTotalBet * 20)
+        {
+            uiManager.PopulateWin(3, SocketManager.ResultData.payload.winAmount);
+        }
+        else if (SocketManager.ResultData.scatter.amount > 0)
         {
             uiManager.PopulateWin(3, SocketManager.ResultData.payload.winAmount);
         }

@@ -36,6 +36,7 @@ public class CardFlip : MonoBehaviour
 
     private void FlipMainCard()
     {
+        gambleController.AllCardToggle(false);
         StartCoroutine(FlipMainObject());
     }
 

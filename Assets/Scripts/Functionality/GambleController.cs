@@ -111,7 +111,7 @@ public class GambleController : MonoBehaviour
         if (audioController) audioController.PlayButtonAudio(); // Play button click audio
         if (gamble_game) gamble_game.SetActive(true); // Activate gamble game object
         loadingScreen.SetActive(true); // Show loading screen
-
+        AllCardToggle(true);
         StartCoroutine(loadingRoutine()); // Start loading routine
         StartCoroutine(GambleCoroutine(isRepeat)); // Start gamble coroutine
     }
@@ -119,7 +119,8 @@ public class GambleController : MonoBehaviour
     // Resets the game and collects winnings
     private void OnReset()
     {
-      //  if (slotController) slotController.GambleCollect(); // Collect winnings
+        //  if (slotController) slotController.GambleCollect(); // Collect winnings
+        AllCardToggle(true);
         if (isAutoSpinOn)
         {
             slotController.AutoSpin();
@@ -255,6 +256,13 @@ public class GambleController : MonoBehaviour
 
     #region Coroutines
 
+    internal void AllCardToggle(bool istrue)
+    {
+        for (int i = 0; i < allcards.Count; i++)
+        {
+            allcards[i].Card_Button.interactable = istrue;
+        }
+    }
     // Main coroutine for handling the gamble process
     IEnumerator GambleCoroutine(bool isRepeate = false)
     {
@@ -274,18 +282,20 @@ public class GambleController : MonoBehaviour
     // Coroutine for handling the loading screen
     IEnumerator loadingRoutine()
     {
+        AllCardToggle(false);
         float fillAmount = 1;
         while (fillAmount > 0.1)
         {
+            yield return new WaitUntil(() => gambleStart);
             fillAmount -= Time.deltaTime;
             slider.fillAmount = fillAmount;
             if (fillAmount == 0.1) yield break;
             yield return null;
         }
-        yield return new WaitUntil(() => gambleStart);
         slider.fillAmount = 0;
         yield return new WaitForSeconds(1f);
         loadingScreen.SetActive(false);
+        AllCardToggle(true);
     }
 
     // Coroutine for collecting winnings
