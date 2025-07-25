@@ -75,6 +75,10 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject DisconnectPopup_Object;
 
+    [Header("Reconection Popup")]
+    [SerializeField]
+    private GameObject ReconectingPopup_Object;
+
     [Header("AnotherDevice Popup")]
     [SerializeField]
     private Button CloseAD_Button;
@@ -137,7 +141,10 @@ public class UIManager : MonoBehaviour
 
     internal int FreeSpins;
 
+    [SerializeField] internal GameObject RaycastBlocker;
+
     [SerializeField] private Button m_AwakeGameButton;
+
     private void Awake()
     {
         // if (Loading_Object) Loading_Object.SetActive(true);
@@ -239,19 +246,19 @@ public class UIManager : MonoBehaviour
         if (GameExit_Button) GameExit_Button.onClick.AddListener(delegate { OpenPopup(QuitPopup_Object); });
 
         if (GameExitSplash_Button) GameExitSplash_Button.onClick.RemoveAllListeners();
-        if (GameExitSplash_Button) GameExitSplash_Button.onClick.AddListener(delegate { if(!isExit){OpenPopup(QuitPopup_Object);} });
+        if (GameExitSplash_Button) GameExitSplash_Button.onClick.AddListener(delegate { if (!isExit) { OpenPopup(QuitPopup_Object); } });
 
         if (GameExitBonus_Button) GameExitBonus_Button.onClick.RemoveAllListeners();
-        if (GameExitBonus_Button) GameExitBonus_Button.onClick.AddListener(delegate { if(!isExit){OpenPopup(QuitPopup_Object);} });
+        if (GameExitBonus_Button) GameExitBonus_Button.onClick.AddListener(delegate { if (!isExit) { OpenPopup(QuitPopup_Object); } });
 
         if (NoQuit_Button) NoQuit_Button.onClick.RemoveAllListeners();
         if (NoQuit_Button) NoQuit_Button.onClick.AddListener(delegate { ClosePopup(QuitPopup_Object); });
 
         if (CrossQuit_Button) CrossQuit_Button.onClick.RemoveAllListeners();
-        if (CrossQuit_Button) CrossQuit_Button.onClick.AddListener(delegate { if(!isExit){ClosePopup(QuitPopup_Object);} });
+        if (CrossQuit_Button) CrossQuit_Button.onClick.AddListener(delegate { if (!isExit) { ClosePopup(QuitPopup_Object); } });
 
         if (BackQuit_Button) BackQuit_Button.onClick.RemoveAllListeners();
-        if (BackQuit_Button) BackQuit_Button.onClick.AddListener(delegate { if(!isExit){ClosePopup(QuitPopup_Object);} });
+        if (BackQuit_Button) BackQuit_Button.onClick.AddListener(delegate { if (!isExit) { ClosePopup(QuitPopup_Object); } });
 
         if (LBExit_Button) LBExit_Button.onClick.RemoveAllListeners();
         if (LBExit_Button) LBExit_Button.onClick.AddListener(delegate { ClosePopup(LBPopup_Object); });
@@ -360,7 +367,7 @@ public class UIManager : MonoBehaviour
         // Application.ExternalCall("window.parent.postMessage", "onExit", "*");
     }
 
-    internal void InitialiseUIData( Paylines symbolsText)
+    internal void InitialiseUIData(Paylines symbolsText)
     {
         PopulateSymbolsPayout(symbolsText);
     }
@@ -397,7 +404,7 @@ public class UIManager : MonoBehaviour
             }
             if (paylines.symbols[i].name.ToUpper() == "JACKPOT")
             {
-               // if (Jackpot_Text) Jackpot_Text.text = paylines.symbols[i].description.ToString();
+                // if (Jackpot_Text) Jackpot_Text.text = paylines.symbols[i].description.ToString();
             }
             if (paylines.symbols[i].name.ToUpper() == "BONUS")
             {
@@ -412,6 +419,10 @@ public class UIManager : MonoBehaviour
 
 
     }
+    internal void ReconnectionPopup()
+    {
+        OpenPopup(ReconectingPopup_Object);
+    }
 
     private void OpenPopup(GameObject Popup)
     {
@@ -419,7 +430,20 @@ public class UIManager : MonoBehaviour
         if (Popup) Popup.SetActive(true);
         if (MainPopup_Object) MainPopup_Object.SetActive(true);
     }
+    internal void CheckAndClosePopups()
+    {
+  
+            if (ReconectingPopup_Object.activeInHierarchy)
+            {
+                ClosePopup(ReconectingPopup_Object);
+            }
+            if (DisconnectPopup_Object.activeInHierarchy)
+            {
+                ClosePopup(DisconnectPopup_Object);
+            }
+        }
 
+    
     private void ClosePopup(GameObject Popup)
     {
         if (audioController) audioController.PlayButtonAudio();
