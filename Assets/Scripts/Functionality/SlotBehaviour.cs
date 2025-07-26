@@ -856,10 +856,7 @@ public class SlotBehaviour : MonoBehaviour
             gambleController.GambleTweeningAnim(true);
             gambleController.toggleDoubleButton(true);
         }
-        else
-        {
-           // Debug.Log("run this line exception " + SocketManager.Playerdata.currentWining + "  " + SocketManager.GambleLimit);
-        }
+        
     }
 
     internal void DeactivateGamble()
@@ -1206,6 +1203,7 @@ public class SlotBehaviour : MonoBehaviour
 
 
 
+
     #endregion
 }
 
@@ -1214,4 +1212,3 @@ public class SlotImage
 {
     public List<Image> slotImages = new List<Image>(10);
 }
-
