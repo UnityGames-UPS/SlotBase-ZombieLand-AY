@@ -385,21 +385,26 @@ public class SocketIOManager : MonoBehaviour
         uiManager.RaycastBlocker.SetActive(false);
     }
 
-    internal void CloseSocket()
+    internal IEnumerator CloseSocket() //Back2 Start
     {
         uiManager.RaycastBlocker.SetActive(true);
-        SendDataWithNamespace("game:exit");
+        ResetPingRoutine();
+
+        Debug.Log("Closing Socket");
+
+        manager?.Close();
+        manager = null;
+
+        Debug.Log("Waiting for socket to close");
+
+        yield return new WaitForSeconds(0.5f);
+
+        Debug.Log("Socket Closed");
+
 #if UNITY_WEBGL && !UNITY_EDITOR
-        JSManager.SendCustomMessage("OnExit");
+    JSManager.SendCustomMessage("OnExit"); //Telling the react platform user wants to quit and go back to homepage
 #endif
-        // DOVirtual.DelayedCall(0.1f, () =>
-        // {
-        //     if (this.manager != null)
-        //     {
-        //         this.manager.Close();
-        //     }
-        // });
-    }
+    } //Back2 end
 
     internal void closeSocketReactnativeCall()
     {
