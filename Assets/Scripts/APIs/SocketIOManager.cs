@@ -23,7 +23,7 @@ public class SocketIOManager : MonoBehaviour
     internal List<List<int>> LineData = null;
     internal List<int> BonusData = null;
 
-   // internal GambleResult gambleData = null;
+    // internal GambleResult gambleData = null;
     // internal Message myMessage = null;
     internal double GambleLimit = 0;
     //[SerializeField] internal List<string> bonusdata = null;
@@ -42,7 +42,7 @@ public class SocketIOManager : MonoBehaviour
     private string testToken;
 
     protected string gameID = "SL-ZML";
-   // protected string gameID = "";
+    // protected string gameID = "";
     private const int maxReconnectionAttempts = 6;
     private readonly TimeSpan reconnectionDelay = TimeSpan.FromSeconds(10);
 
@@ -97,21 +97,21 @@ public class SocketIOManager : MonoBehaviour
         options.Timeout = TimeSpan.FromSeconds(3); //Back2 end
         options.ConnectWith = Best.SocketIO.Transports.TransportTypes.WebSocket;
 
-        #if UNITY_WEBGL && !UNITY_EDITOR
+#if UNITY_WEBGL && !UNITY_EDITOR
             JSManager.SendCustomMessage("authToken");
             StartCoroutine(WaitForAuthToken(options));
-        #else
-            Func<SocketManager, Socket, object> authFunction = (manager, socket) =>
+#else
+        Func<SocketManager, Socket, object> authFunction = (manager, socket) =>
+        {
+            return new
             {
-                return new
-                {
-                    token = testToken              
-                };
+                token = testToken
             };
-            options.Auth = authFunction;
-            // Proceed with connecting to the server
-            SetupSocketManager(options);
-        #endif
+        };
+        options.Auth = authFunction;
+        // Proceed with connecting to the server
+        SetupSocketManager(options);
+#endif
     }
 
     private IEnumerator WaitForAuthToken(SocketOptions options)
@@ -154,12 +154,14 @@ public class SocketIOManager : MonoBehaviour
         // Create and setup SocketManager
         this.manager = new SocketManager(new Uri(SocketURI), options);
 #endif
-        if(string.IsNullOrEmpty(nameSpace) | string.IsNullOrWhiteSpace(nameSpace)){
-          gameSocket = this.manager.Socket;
+        if (string.IsNullOrEmpty(nameSpace) | string.IsNullOrWhiteSpace(nameSpace))
+        {
+            gameSocket = this.manager.Socket;
         }
-        else{
-          Debug.Log("Namespace used :"+nameSpace);
-          gameSocket = this.manager.GetSocket("/" + nameSpace);
+        else
+        {
+            Debug.Log("Namespace used :" + nameSpace);
+            gameSocket = this.manager.GetSocket("/" + nameSpace);
         }
         // Set subscriptions
         gameSocket.On<ConnectResponse>(SocketIOEventTypes.Connect, OnConnected);
@@ -244,6 +246,12 @@ public class SocketIOManager : MonoBehaviour
             Debug.Log("my state is " + state);
             //InitRequest("AUTH");
         }
+    }
+
+    void CloseGame()
+    {
+        Debug.Log("Unity: Closing Game");
+        StartCoroutine(CloseSocket());
     }
     private void OnSocketError(string data)
     {
@@ -422,7 +430,7 @@ public class SocketIOManager : MonoBehaviour
         //Debug.Log(jsonObject);
         Root myData = JsonConvert.DeserializeObject<Root>(jsonObject);
 
-        string id = myData.id;        
+        string id = myData.id;
 
         switch (id)
         {
@@ -431,7 +439,7 @@ public class SocketIOManager : MonoBehaviour
                     InitialData = myData.gameData;
                     UIData = myData.uiData;
                     PlayerData = myData.player;
-                    
+
 
                     if (!SetInit)
                     {
@@ -470,7 +478,7 @@ public class SocketIOManager : MonoBehaviour
                 }
             case "gambleDraw":
                 {
-       
+
                     GambleData = myData;
                     PlayerData = myData.player;
                     UpdateUiOnResult(myData);
@@ -531,7 +539,7 @@ public class SocketIOManager : MonoBehaviour
     }
     private void RefreshUI()
     {
-        uiManager.InitialiseUIData( UIData.paylines);
+        uiManager.InitialiseUIData(UIData.paylines);
     }
     //List<string> GetBonusData(List<int> bonusData)
     //{
@@ -610,7 +618,7 @@ public class SocketIOManager : MonoBehaviour
         MessageData message = new MessageData();
         message.payload = new SentDeta();
         message.type = "GAMBLE";
-        
+
         message.payload.lastWinning = slotManager.BetCounter;
         message.payload.Event = "collect";
         // Serialize message data to JSON
@@ -874,5 +882,5 @@ public class AuthTokenData
 {
     public string cookie;
     public string socketURL;
-   public string nameSpace; //BackendChanges
+    public string nameSpace; //BackendChanges
 }
