@@ -104,6 +104,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Sprite HugeWin_Sprite;
     [SerializeField] private Sprite BigWin_Sprite;
     [SerializeField] private Sprite MegaWin_Sprite;
+    [SerializeField] private Sprite Scater_Sprite;
     [SerializeField] private Button MegaWinHideBtn;
 
     [Header("FreeSpins Popup")]
@@ -315,7 +316,8 @@ public class UIManager : MonoBehaviour
         if (FreeSpinPopup_Object) FreeSpinPopup_Object.SetActive(true);
         if (Free_Text) Free_Text.text = "You are awarded with " + ExtraSpins.ToString() + " extra free spins.";
         if (MainPopup_Object) MainPopup_Object.SetActive(true);
-        DOVirtual.DelayedCall(2f, () => {
+        DOVirtual.DelayedCall(2f, () =>
+        {
             StartFreeSpins(spins);
         });
     }
@@ -334,6 +336,9 @@ public class UIManager : MonoBehaviour
                 break;
             case 3:
                 if (Win_Image) Win_Image.sprite = MegaWin_Sprite;
+                break;
+            case 4:
+                if (Win_Image) Win_Image.sprite = Scater_Sprite;
                 break;
         }
         if (megawin) megawin.SetActive(true);
@@ -374,20 +379,21 @@ public class UIManager : MonoBehaviour
 
     private void PopulateSymbolsPayout(Paylines paylines)
     {
+        double multiplyer = socketManager.InitialData.bets[slotManager.BetCounter];
         for (int i = 0; i < SymbolsText.Length; i++)
         {
             string text = null;
             if (paylines.symbols[i].multiplier[0] != 0)
             {
-                text += "5x - " + paylines.symbols[i].multiplier[0] + "x";
+                text += "5x - " + paylines.symbols[i].multiplier[0] * multiplyer;
             }
             if (paylines.symbols[i].multiplier[1] != 0)
             {
-                text += "\n4x - " + paylines.symbols[i].multiplier[1] + "x";
+                text += "\n4x - " + paylines.symbols[i].multiplier[1] * multiplyer;
             }
             if (paylines.symbols[i].multiplier[2] != 0)
             {
-                text += "\n3x - " + paylines.symbols[i].multiplier[2] + "x";
+                text += "\n3x - " + paylines.symbols[i].multiplier[2] * multiplyer;
             }
             if (SymbolsText[i]) SymbolsText[i].text = text;
         }
@@ -432,18 +438,18 @@ public class UIManager : MonoBehaviour
     }
     internal void CheckAndClosePopups()
     {
-  
-            if (ReconectingPopup_Object.activeInHierarchy)
-            {
-                ClosePopup(ReconectingPopup_Object);
-            }
-            if (DisconnectPopup_Object.activeInHierarchy)
-            {
-                ClosePopup(DisconnectPopup_Object);
-            }
-        }
 
-    
+        if (ReconectingPopup_Object.activeInHierarchy)
+        {
+            ClosePopup(ReconectingPopup_Object);
+        }
+        if (DisconnectPopup_Object.activeInHierarchy)
+        {
+            ClosePopup(DisconnectPopup_Object);
+        }
+    }
+
+
     private void ClosePopup(GameObject Popup)
     {
         if (audioController) audioController.PlayButtonAudio();

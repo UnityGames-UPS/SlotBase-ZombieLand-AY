@@ -314,7 +314,7 @@ public class SlotBehaviour : MonoBehaviour
                 BetCounter = SocketManager.InitialData.bets.Count - 1; // Loop to the last bet
             }
         }
-
+        uiManager.InitialiseUIData(SocketManager.UIData.paylines);
         Debug.Log("run this");
         if (LineBet_text) LineBet_text.text = SocketManager.InitialData.bets[BetCounter].ToString();
         if (TotalBet_text) TotalBet_text.text = (SocketManager.InitialData.bets[BetCounter] * Lines).ToString();
@@ -870,21 +870,21 @@ public class SlotBehaviour : MonoBehaviour
 
     internal void CheckWinPopups()
     {
-        if (SocketManager.ResultData.payload.winAmount >= currentTotalBet * 10 && SocketManager.ResultData.payload.winAmount < currentTotalBet * 15)
+        if (SocketManager.ResultData.payload.winAmount >= currentTotalBet * 5 && SocketManager.ResultData.payload.winAmount < currentTotalBet * 10)
         {
             uiManager.PopulateWin(1, SocketManager.ResultData.payload.winAmount);
         }
-        else if (SocketManager.ResultData.payload.winAmount >= currentTotalBet * 15 && SocketManager.ResultData.payload.winAmount < currentTotalBet * 20)
+        else if (SocketManager.ResultData.payload.winAmount >= currentTotalBet * 10 && SocketManager.ResultData.payload.winAmount < currentTotalBet * 15)
         {
             uiManager.PopulateWin(2, SocketManager.ResultData.payload.winAmount);
         }
-        else if (SocketManager.ResultData.payload.winAmount >= currentTotalBet * 20)
+        else if (SocketManager.ResultData.payload.winAmount >= currentTotalBet * 15)
         {
             uiManager.PopulateWin(3, SocketManager.ResultData.payload.winAmount);
         }
         else if (SocketManager.ResultData.scatter.amount > 0)
         {
-            uiManager.PopulateWin(3, SocketManager.ResultData.payload.winAmount);
+            uiManager.PopulateWin(4, SocketManager.ResultData.payload.winAmount);
         }
         else
         {
