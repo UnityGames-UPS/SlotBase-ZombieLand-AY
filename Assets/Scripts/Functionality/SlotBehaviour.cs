@@ -167,6 +167,23 @@ public class SlotBehaviour : MonoBehaviour
     private Tweener WinTween;
     private Sprite turboOriginalSprite;
     private int freeSpinsLeft;
+
+    public static List<List<int>> initialGrid = new List<List<int>>()
+    {
+        new List<int>() { 8, 12, 7},
+        new List<int>() { 12, 8, 7},
+        new List<int>() { 12, 7, 11},
+        new List<int>() { 12, 8, 7},
+        new List<int>() { 8, 12, 7}
+    };
+    public static List<List<int>> initialAnimGrid = new List<List<int>>()
+    {
+        new List<int>() { 10, 10, 10},
+        new List<int>() { 10, 10, 10},
+        new List<int>() { 10, 10, 10},
+        new List<int>() { 10, 10, 10},
+        new List<int>() { 10, 10, 10}
+    };
     private void Start()
     {
         Debug.Log("****** V_1.2 **********");
@@ -239,12 +256,25 @@ public class SlotBehaviour : MonoBehaviour
 
     internal void shuffleInitialMatrix()
     {
+        Debug.Log("Suffling------------------");
         for (int i = 0; i < Tempimages.Count; i++)
         {
             for (int j = 0; j < 3; j++)
             {
-                int randomIndex = UnityEngine.Random.Range(0, myImages.Length);
-                Tempimages[i].slotImages[j].transform.GetChild(0).GetComponent<Image>().sprite = myImages[randomIndex];
+                PopulateAnimationSprites(Tempimages[i].slotImages[j].transform.GetChild(0).GetComponent<ImageAnimation>(), initialGrid[i][j]);
+                Tempimages[i].slotImages[j].transform.GetChild(0).GetComponent<Image>().sprite = myImages[initialGrid[i][j]];
+            }
+        }
+        for (int i = 0; i < Tempimages.Count; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                Debug.Log(i + "--------" + initialAnimGrid[i][j] + "----------" + j);
+                if (initialAnimGrid[i][j] > 0)
+                {
+                    Debug.Log(initialAnimGrid[i][j]);
+                    StartGameAnimation(Tempimages[i].slotImages[j].gameObject);
+                }
             }
         }
     }

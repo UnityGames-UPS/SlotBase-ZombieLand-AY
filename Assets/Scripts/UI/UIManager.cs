@@ -172,18 +172,7 @@ public class UIManager : MonoBehaviour
         if (Loading_Object) Loading_Object.SetActive(false);
     }
 
-    private IEnumerator LoadingTextAnimate()
-    {
-        while (true)
-        {
-            if (Loading_Text) Loading_Text.text = "Loading.";
-            yield return new WaitForSeconds(1f);
-            if (Loading_Text) Loading_Text.text = "Loading..";
-            yield return new WaitForSeconds(1f);
-            if (Loading_Text) Loading_Text.text = "Loading...";
-            yield return new WaitForSeconds(1f);
-        }
-    }
+
 
     private void Start()
     {
